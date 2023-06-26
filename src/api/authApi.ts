@@ -18,10 +18,15 @@ authInstance.interceptors.request.use(authRequest)
 export const authApi = {
 
   registration(params: RegistrationType){
-    return instance.post<RegistrationResponseType>('registration', params).then(data => data.data.token)
+    return instance.post<RegistrationResponseType>('registration', params)
+      .then(data => data.data.token)
   },
   auth(){
     return authInstance.get('').then(data => data)
+  },
+  login(params: LoginType){
+    return instance.post<LoginResponseType>('login', params)
+      .then(data => data.data.token)
   }
 
 }
@@ -34,3 +39,8 @@ export type RegistrationType = {
 export type RegistrationResponseType = {
   token: string
 }
+export type LoginType = {
+  email: string
+  password: string
+}
+export type LoginResponseType = RegistrationResponseType
