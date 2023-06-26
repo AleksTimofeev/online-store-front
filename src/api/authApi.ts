@@ -1,17 +1,24 @@
-import axios from "axios";
+import axios, {InternalAxiosRequestConfig} from "axios";
 
 
 const instance = axios.create({
   baseURL: 'https://online-store-zeta-sage.vercel.app/auth/',
 })
 
+export const authInstance = axios.create({
+  baseURL: 'https://online-store-zeta-sage.vercel.app/auth/'
+})
+const authRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem('my token')}`
+  return config;
+};
+
+authInstance.interceptors.request.use(authRequest)
+
 export const authApi = {
 
   registration(params: RegistrationType){
-    return instance.post('registration').then(data => data)
-  },
-  login(params: LoginType){
-    return instance.post<LoginResponseType>('login').then(data => data.data.token)
+    return instance.post<RegistrationResponseType>('registration', params).then(data => data.data.token)
   }
 
 }
@@ -21,10 +28,6 @@ export type RegistrationType = {
   email: string
   password: string
 }
-export type LoginType = {
-  email: string
-  password: string
-}
-export type LoginResponseType = {
+export type RegistrationResponseType = {
   token: string
 }
