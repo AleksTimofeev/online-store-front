@@ -19,6 +19,9 @@ export const authApi = {
 
   registration(params: RegistrationType){
     return instance.post<RegistrationResponseType>('registration', params).then(data => data.data.token)
+  },
+  auth(){
+    return authInstance.get('').then(data => data)
   }
 
 }
