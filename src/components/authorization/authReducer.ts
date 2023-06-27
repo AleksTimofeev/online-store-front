@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {authApi, LoginType, RegistrationType} from "../../api/authApi";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
+import {RequestStatusType} from "../../types";
 
 export const registration = createAsyncThunk<UserType, RegistrationType, { rejectValue: string }>(
   'auth/registration', async (arg, thunkAPI) => {
@@ -129,7 +130,6 @@ export type AuthReducerType = {
   isAuth: boolean
   authenticationStatus: RequestStatusType
 }
-export type RequestStatusType = 'idle' | 'succeeded' | 'failed' | 'loading'
 
 export type UserType = {
   login: string
