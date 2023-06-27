@@ -14,7 +14,7 @@ const LoginPage = () => {
 
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector(state => state.auth.isAuth)
-  const requestLoginStatus = useAppSelector(state => state.auth.requestLoginStatus)
+  const authenticationStatus = useAppSelector(state => state.auth.authenticationStatus)
 
   const formik = useFormik<LoginFormType>({
     initialValues: {
@@ -37,10 +37,10 @@ const LoginPage = () => {
   })
 
   useEffect(() => {
-    if(requestLoginStatus === 'idle'){
+    if(authenticationStatus === 'idle'){
       formik.resetForm()
     }
-  },[requestLoginStatus])
+  },[authenticationStatus])
 
   if (isAuth) {
     return <Navigate to={'/'} />
@@ -76,7 +76,7 @@ const LoginPage = () => {
           }
         </label>
         <button
-          disabled={requestLoginStatus === 'loading'}
+          disabled={authenticationStatus === 'loading'}
           type={"submit"}
         >send</button>
       </form>
