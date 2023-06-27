@@ -9,6 +9,7 @@ function App() {
 
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector(state => state.auth.isAuth)
+  const appStatus = useAppSelector(state => state.app.appStatus)
 
   const handleLogout = () => {
     dispatch(logout())
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <div className="app">
-      {!isAuth ? <div>LOADING</div> :
+      {appStatus === 'loading' ? <div>LOADING</div> :
         <>
           <h1>ONLINE-STORE</h1>
           <NavLink to={'login'}>login</NavLink>

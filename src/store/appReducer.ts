@@ -20,6 +20,9 @@ const slice = createSlice({
     builder.addCase(auth.fulfilled, (state, action) => {
       state.appStatus = 'idle'
     })
+    builder.addCase(auth.rejected, (state, action) => {
+      state.appStatus = 'idle'
+    })
   }
 })
 
