@@ -1,0 +1,54 @@
+.wrapper {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #343434;
+
+  .container {
+    width: 90%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navigation {
+    display: flex;
+    gap: 20px;
+
+    a{
+      color: white;
+      border-bottom: 1px solid transparent;
+      transition: .3s;
+    }
+    a:hover {
+      border-bottom: 1px solid white;
+      transition: .4s;
+    }
+  }
+
+  .userInfo {
+    display: flex;
+    gap: 20px;
+    svg {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+    .profile {
+      stroke: #ffffff;
+
+      &:hover {
+        stroke: #ccc;
+      }
+    }
+    .basket {
+      fill: #ffffff;
+
+      &:hover {
+        fill: #ccc
+      }
+    }
+  }
+}

@@ -1,9 +1,11 @@
-import React, {MouseEventHandler, useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './app.css';
-import {NavLink, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "./store/store";
-import {auth, login, logout, registration} from "./components/authorization/authReducer";
+import {auth, login} from "./components/authorization/authReducer";
 import LoginPage from "./components/authorization/login/LoginPage";
+import {Header} from "./components/Header/Header";
+import styles from './App.module.scss'
 
 function App() {
 
@@ -11,32 +13,25 @@ function App() {
   const isAuth = useAppSelector(state => state.auth.isAuth)
   const appStatus = useAppSelector(state => state.app.appStatus)
 
-  const handleLogout = () => {
-    dispatch(logout())
-  }
-
   useEffect(() => {
-    if(!isAuth){
+    if (!isAuth) {
       dispatch(auth())
     }
-  },[isAuth])
+  }, [isAuth])
 
   return (
-    <div className="app">
+    <div className={styles.app}>
       {appStatus === 'loading' ? <div>LOADING</div> :
         <>
-          <h1>ONLINE-STORE</h1>
-          <NavLink to={'login'}>login</NavLink>
-          <button onClick={handleLogout}>logout</button>
+          <Header/>
         </>
       }
-
-      <Routes>
-
-
-        <Route path={''} element={<h2>Home page</h2>} />
-        <Route path={'login'} element={<LoginPage />} />
-      </Routes>
+      <div className={styles.body}>
+        <Routes>
+          <Route path={''} element={<h2>Home page</h2>}/>
+          <Route path={'login'} element={<LoginPage/>}/>
+        </Routes>
+      </div>
     </div>
   );
 }
