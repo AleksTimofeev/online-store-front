@@ -37,7 +37,34 @@
       cursor: pointer;
     }
     .profile {
+      position: relative;
       stroke: #ffffff;
+
+      .menu {
+        position: absolute;
+        width: max-content;
+        height: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        background: #cccccc;
+        transition: .3s;
+
+        span {
+          padding: 6px 12px;
+          cursor: pointer;
+
+          &:hover {
+            background: #a8a8a8;
+          }
+        }
+      }
+
+      &:hover > .menu {
+        height: fit-content;
+      }
 
       &:hover {
         stroke: #ccc;
@@ -50,5 +77,14 @@
         fill: #ccc
       }
     }
+  }
+}
+
+@keyframes showMenu {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: fit-content;
   }
 }

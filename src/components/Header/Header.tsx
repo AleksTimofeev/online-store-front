@@ -3,6 +3,7 @@ import styles from './Header.module.scss'
 import {NavLink, useNavigate} from "react-router-dom";
 import {basketIcon} from '../../assets/icons/basket'
 import {profileIcon} from '../../assets/icons/profile'
+import {Profile} from "./Profile";
 
 
 export const Header = () => {
@@ -25,13 +26,14 @@ export const Header = () => {
           <NavLink to={'/contacts'}>Контакты</NavLink>
         </nav>
         <div className={styles.userInfo}>
-          <div
-            className={styles.profile}
-            title={'Профиль'}
-            onClick={handleNavigateToProfile}
-          >
-            {profileIcon}
-          </div>
+          <Profile />
+          {/*<div*/}
+          {/*  className={styles.profile}*/}
+          {/*  title={'Профиль'}*/}
+          {/*  onClick={handleNavigateToProfile}*/}
+          {/*>*/}
+          {/*  {profileIcon}*/}
+          {/*</div>*/}
           <div
             className={styles.basket}
             title={'Корзина'}
