@@ -13,11 +13,11 @@ function App() {
   const isAuth = useAppSelector(state => state.auth.isAuth)
   const appStatus = useAppSelector(state => state.app.appStatus)
 
-  // useEffect(() => {
-  //   if (!isAuth) {
-  //     dispatch(auth())
-  //   }
-  // }, [isAuth])
+  useEffect(() => {
+    if (!isAuth) {
+      dispatch(auth())
+    }
+  }, [isAuth])
 
   return (
     <div className={styles.app}>

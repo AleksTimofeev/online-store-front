@@ -40,6 +40,14 @@
       position: relative;
       stroke: #ffffff;
 
+      &>span {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.2em;
+        color: white;
+      }
+
       .menu {
         position: absolute;
         width: max-content;

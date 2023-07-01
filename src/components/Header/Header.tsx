@@ -2,17 +2,13 @@ import React from 'react';
 import styles from './Header.module.scss'
 import {NavLink, useNavigate} from "react-router-dom";
 import {basketIcon} from '../../assets/icons/basket'
-import {profileIcon} from '../../assets/icons/profile'
-import {Profile} from "./Profile";
+import {HeaderProfile} from "./HeaderProfile";
 
 
 export const Header = () => {
 
   const navigate = useNavigate()
 
-  const handleNavigateToProfile = () => {
-    navigate('/profile')
-  }
   const handleNavigateToBasket = () => {
     navigate('/basket')
   }
@@ -26,14 +22,7 @@ export const Header = () => {
           <NavLink to={'/contacts'}>Контакты</NavLink>
         </nav>
         <div className={styles.userInfo}>
-          <Profile />
-          {/*<div*/}
-          {/*  className={styles.profile}*/}
-          {/*  title={'Профиль'}*/}
-          {/*  onClick={handleNavigateToProfile}*/}
-          {/*>*/}
-          {/*  {profileIcon}*/}
-          {/*</div>*/}
+          <HeaderProfile />
           <div
             className={styles.basket}
             title={'Корзина'}
