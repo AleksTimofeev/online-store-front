@@ -3,11 +3,14 @@ import styles from './Header.module.scss'
 import {NavLink, useNavigate} from "react-router-dom";
 import {basketIcon} from '../../assets/icons/basket'
 import {HeaderProfile} from "./HeaderProfile";
+import {LinearPreloader} from "../LinearPreloader/LinearPreloader";
+import {useAppSelector} from "../../store/store";
 
 
 export const Header = () => {
 
   const navigate = useNavigate()
+  const appStatus = useAppSelector(state => state.app.appStatus)
 
   const handleNavigateToBasket = () => {
     navigate('/basket')
@@ -32,6 +35,7 @@ export const Header = () => {
           </div>
         </div>
       </div>
+      {appStatus === 'loading' ? <LinearPreloader/> : <div className={styles.bottomLine}></div> }
     </div>
   );
 }

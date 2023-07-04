@@ -21,14 +21,10 @@ function App() {
 
   return (
     <div className={styles.app}>
-      {appStatus === 'loading' ? <div>LOADING</div> :
-        <>
-          <Header/>
-        </>
-      }
+      <Header/>
       <div className={styles.body}>
         <Routes>
-          <Route path={''} element={<HomePage />}/>
+          <Route path={''} element={<HomePage/>}/>
           <Route path={'login'} element={<LoginPage/>}/>
         </Routes>
       </div>
