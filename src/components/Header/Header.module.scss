@@ -86,11 +86,12 @@
     }
   }
 }
-.bottomLine {
+.preloader {
+  position: absolute;
   width: 100%;
-  height: 5px;
-  background: #343434;
+
 }
+
 
 @keyframes showMenu {
   0% {
