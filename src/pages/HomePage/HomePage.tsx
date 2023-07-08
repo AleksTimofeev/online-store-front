@@ -42,7 +42,6 @@ export const HomePage = () => {
         <CardProduct imgUrl={'#'} title={'title'} price={500} />
         <CardProduct imgUrl={'#'} title={'title'} price={500} />
       </div>
-      <Footer />
     </div>
   );
 }
