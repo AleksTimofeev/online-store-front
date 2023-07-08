@@ -13,20 +13,10 @@ const slice = createSlice({
       state.appStatus = action.payload
     }
   },
-  extraReducers: builder => {
-    builder.addCase(auth.pending, (state, action) => {
-      state.appStatus = 'loading'
-    })
-    builder.addCase(auth.fulfilled, (state, action) => {
-      state.appStatus = 'idle'
-    })
-    builder.addCase(auth.rejected, (state, action) => {
-      state.appStatus = 'idle'
-    })
-  }
+  extraReducers: builder => {}
 })
 
-
+export const {changeAppStatus} = slice.actions
 export const appReducer = slice.reducer
 
 export type AppReducerType = {

@@ -3,10 +3,12 @@ import {authApi, LoginType, RegistrationType} from "../../api/authApi";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 import {RequestStatusType} from "../../types";
+import {changeAppStatus} from "../../store/appReducer";
 
 export const registration = createAsyncThunk<UserType, RegistrationType, { rejectValue: string }>(
   'auth/registration', async (arg, thunkAPI) => {
     thunkAPI.dispatch(changeAuthenticationStatus('loading'))
+    thunkAPI.dispatch(changeAppStatus('loading'))
     try {
       const token = await authApi.registration(arg)
       localStorage.setItem('my token', token)
@@ -17,12 +19,16 @@ export const registration = createAsyncThunk<UserType, RegistrationType, { rejec
       thunkAPI.dispatch(changeAuthenticationStatus('failed'))
       return thunkAPI.rejectWithValue('error')
     }
+    finally {
+      thunkAPI.dispatch(changeAppStatus('idle'))
+    }
   }
 )
 
 export const auth = createAsyncThunk<UserType, undefined, { rejectValue: string }>(
   'auth/auth', async (arg, thunkAPI) => {
     thunkAPI.dispatch(changeAuthenticationStatus('loading'))
+    thunkAPI.dispatch(changeAppStatus('loading'))
     try {
       await authApi.auth()
       const token = localStorage.getItem('my token')
@@ -42,12 +48,16 @@ export const auth = createAsyncThunk<UserType, undefined, { rejectValue: string 
       thunkAPI.dispatch(changeAuthenticationStatus('failed'))
       return thunkAPI.rejectWithValue('error')
     }
+    finally {
+      thunkAPI.dispatch(changeAppStatus('idle'))
+    }
   }
 )
 
 export const login = createAsyncThunk<UserType, LoginType, { rejectValue: string }>(
   'auth/login', async (arg, thunkAPI) => {
     thunkAPI.dispatch(changeAuthenticationStatus('loading'))
+    thunkAPI.dispatch(changeAppStatus('loading'))
     try {
       const token = await authApi.login(arg)
       localStorage.setItem('my token', token)
@@ -57,6 +67,9 @@ export const login = createAsyncThunk<UserType, LoginType, { rejectValue: string
       console.log(e)
       thunkAPI.dispatch(changeAuthenticationStatus('failed'))
       return thunkAPI.rejectWithValue('error')
+    }
+    finally {
+      thunkAPI.dispatch(changeAppStatus('idle'))
     }
   }
 )
