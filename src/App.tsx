@@ -1,11 +1,16 @@
 import React, {useEffect} from 'react';
-import {Route, Routes} from "react-router-dom";
+import {NavLink, Route, Routes, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "./store/store";
 import {auth, login} from "./components/authorization/authReducer";
 import LoginPage from "./components/authorization/login/LoginPage";
 import {Header} from "./components/Header/Header";
 import styles from './App.module.scss'
 import {HomePage} from "./pages/HomePage/HomePage";
+import {CatalogPage} from "./pages/CatalogPage/CatalogPage";
+import {Footer} from "./components/Footer/Footer";
+import {Products} from "./pages/CatalogPage/Products/Products";
+import {CardProduct} from "./pages/CatalogPage/Products/CardProduct/CardProduct";
+import {ProductPage} from "./pages/ProductPage/ProductPage";
 
 function App() {
 
@@ -26,8 +31,15 @@ function App() {
         <Routes>
           <Route path={''} element={<HomePage/>}/>
           <Route path={'login'} element={<LoginPage/>}/>
+          <Route path={'catalog'} element={<CatalogPage/>}>
+            <Route path={':category'} element={<Products/>}>
+              <Route path={'::product'} element={<ProductPage/>}/>
+            </Route>
+
+          </Route>
         </Routes>
       </div>
+      <Footer/>
     </div>
   );
 }
