@@ -5,7 +5,7 @@ import {auth, login} from "./components/authorization/authReducer";
 import LoginPage from "./components/authorization/login/LoginPage";
 import {Header} from "./components/Header/Header";
 import styles from './App.module.scss'
-import {HomePage} from "./pages/HomePage";
+import {HomePage} from "./pages/HomePage/HomePage";
 
 function App() {
 
