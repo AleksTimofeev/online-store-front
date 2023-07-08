@@ -4,7 +4,6 @@ import styles from './HomePage.module.scss'
 import first from '../../assets/103.png'
 import second from '../../assets/109.png'
 import {CardProduct} from "./CardProduct";
-import {Footer} from "../../components/Footer/Footer";
 
 export const HomePage = () => {
   return (

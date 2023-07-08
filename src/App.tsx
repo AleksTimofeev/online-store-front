@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {NavLink, Route, Routes, useParams} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "./store/store";
 import {auth, login} from "./components/authorization/authReducer";
 import LoginPage from "./components/authorization/login/LoginPage";
@@ -9,7 +9,6 @@ import {HomePage} from "./pages/HomePage/HomePage";
 import {CatalogPage} from "./pages/CatalogPage/CatalogPage";
 import {Footer} from "./components/Footer/Footer";
 import {Products} from "./pages/CatalogPage/Products/Products";
-import {CardProduct} from "./pages/CatalogPage/Products/CardProduct/CardProduct";
 import {ProductPage} from "./pages/ProductPage/ProductPage";
 
 function App() {
