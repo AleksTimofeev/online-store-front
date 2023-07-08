@@ -1,0 +1,40 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+  background: #343434;
+  color: #cccccc;
+
+  .container {
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+
+    ul {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+
+      li {
+        margin: 10px 0;
+      }
+    }
+    .nav {
+      width: 20%;
+      a{
+        color: #cccccc;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+    .about {
+      align-items: center;
+    }
+    .contacts {
+      align-items: flex-end;
+    }
+  }
+}
