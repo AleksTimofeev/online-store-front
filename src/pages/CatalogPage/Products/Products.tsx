@@ -11,6 +11,7 @@ import i006 from '../../../assets/productImage/006.jpg'
 import i007 from '../../../assets/productImage/007.jpg'
 import i008 from '../../../assets/productImage/008.jpg'
 import i009 from '../../../assets/productImage/009.jpg'
+import {Pagination} from "../../../components/Pagination/Pagination";
 
 export const fakeData = [
   {
@@ -83,6 +84,13 @@ export const Products = () => {
   const category = useParams<{ category: string }>().category
   const [data, setData] = useState(fakeData)
 
+  const handleChangeCurrentPage = (currentPage: number) => {
+    console.log('current page ' + currentPage)
+  }
+  const handleChangePageSize = (pageSize: number) => {
+    console.log('page size ' + pageSize)
+  }
+
   useEffect(() => {
     //get category products
   }, [category])
@@ -92,11 +100,16 @@ export const Products = () => {
       <div className={styles.title}><span>{category}</span></div>
       <ul className={styles.productList}>
         {data.map(p => (
-          <li className={styles.productWrapper}>
+          <li key={p.id} className={styles.productWrapper}>
             <CardProduct {...p} />
           </li>
         ))}
       </ul>
+      <Pagination
+        totalProductsCount={530}
+        changeCurrentPage={handleChangeCurrentPage}
+        changePageSize={handleChangePageSize}
+      />
     </div>
   );
 }

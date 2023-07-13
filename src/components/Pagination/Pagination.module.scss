@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  gap: 20px;
+
+  .pageNumber {
+    padding: 3px 12px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: .3s;
+
+    &:hover {
+      border-radius: 3px;
+      background: #e8e8e8;
+      transition: .3s;
+    }
+  }
+  .activePage {
+    padding: 3px 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
