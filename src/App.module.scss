@@ -11,5 +11,7 @@
 }
 .body {
   width: 100%;
+  display: flex;
   margin-top: 50px;
+  flex-grow: 1;
 }

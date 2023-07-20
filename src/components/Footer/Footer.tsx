@@ -10,7 +10,7 @@ export const Footer = () => {
           <li>
             <NavLink to={''}>Главная</NavLink></li>
           <li>
-            <NavLink to={'/catalog'}>Каталог</NavLink></li>
+            <NavLink to={'/catalog/all'}>Каталог</NavLink></li>
         </ul>
         <ul className={styles.about}>
           <li>О НАС</li>

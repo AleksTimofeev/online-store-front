@@ -47,7 +47,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <form className={styles.form} onSubmit={formik.handleSubmit}>
         <label htmlFor={'email'}>
           <span>Email</span>
