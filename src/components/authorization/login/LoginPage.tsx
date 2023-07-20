@@ -76,7 +76,7 @@ const LoginPage = () => {
           }
         </label>
         <button
-          disabled={authenticationStatus === 'loading'}
+          disabled={authenticationStatus === 'loading' || !!formik.errors.password || !!formik.errors.email}
           type={"submit"}
         >send</button>
       </form>

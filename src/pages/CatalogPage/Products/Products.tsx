@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Products.module.scss'
-import {useParams} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import {CardProduct} from "./CardProduct/CardProduct";
 import i001 from '../../../assets/productImage/001.jpg'
 import i002 from '../../../assets/productImage/002.jpg'
@@ -12,6 +12,7 @@ import i007 from '../../../assets/productImage/007.jpg'
 import i008 from '../../../assets/productImage/008.jpg'
 import i009 from '../../../assets/productImage/009.jpg'
 import {Pagination} from "../../../components/Pagination/Pagination";
+import {ProductPage} from "../../ProductPage/ProductPage";
 
 export const fakeData = [
   {
@@ -81,7 +82,7 @@ export const fakeData = [
 
 export const Products = () => {
 
-  const category = useParams<{ category: string }>().category
+  const {category, product} = useParams<{ category: string, product: string | undefined }>()
   const [data, setData] = useState(fakeData)
 
   const handleChangeCurrentPage = (currentPage: number) => {
@@ -96,20 +97,22 @@ export const Products = () => {
   }, [category])
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.title}><span>{category}</span></div>
-      <ul className={styles.productList}>
-        {data.map(p => (
-          <li key={p.id} className={styles.productWrapper}>
-            <CardProduct {...p} />
-          </li>
-        ))}
-      </ul>
-      <Pagination
-        totalProductsCount={530}
-        changeCurrentPage={handleChangeCurrentPage}
-        changePageSize={handleChangePageSize}
-      />
-    </div>
+    <>
+      {product ? <ProductPage /> : <div className={styles.wrapper}>
+        <div className={styles.title}><span>{category}</span></div>
+        <ul className={styles.productList}>
+          {data.map(p => (
+            <li key={p.id} className={styles.productWrapper}>
+              <CardProduct {...p} />
+            </li>
+          ))}
+        </ul>
+        <Pagination
+          totalProductsCount={530}
+          changeCurrentPage={handleChangeCurrentPage}
+          changePageSize={handleChangePageSize}
+        />
+      </div>}
+    </>
   );
 }
