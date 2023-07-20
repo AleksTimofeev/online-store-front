@@ -1,0 +1,36 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 50px;
+
+  .imgContainer {
+    max-width: 500px;
+    flex-grow: 3;
+
+    background: #006495;
+  }
+
+  .productDetail {
+    flex-grow: 1;
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background: #cccccc;
+
+    .title {
+      margin-bottom: 30px;
+      font-size: 2em;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .description {
+    }
+    .rating {
+
+    }
+  }
+}
