@@ -21,7 +21,7 @@ export const CardProduct: React.FC<PropsType> = ({
   const navigate = useNavigate()
 
   const handleGoToProduct = () => {
-    navigate(id)
+    navigate(`/catalog/${id}`)
   }
 
   return (
@@ -30,7 +30,7 @@ export const CardProduct: React.FC<PropsType> = ({
       onClick={handleGoToProduct}
     >
       <div className={styles.imgContainer}>
-        <img src={imgUrl} alt="img"/>
+        <img src={imgUrl} width='200' height='200' alt="img"/>
       </div>
       <div className={styles.title}>{title}</div>
       <div className={styles.description}>

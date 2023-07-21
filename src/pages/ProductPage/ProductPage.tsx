@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {fakeData} from "../CatalogPage/Products/Products";
 import styles from './ProductPage.module.scss'
+import {fakeData} from "../CatalogPage/CatalogPage";
 
 export const ProductPage = () => {
 
-  const {product} = useParams<{ category: string, product: string }>()
-  const [data, setData] = useState(fakeData.find(p => p.id === product))
+  const {productId} = useParams<{productId: string }>()
+  const [data, setData] = useState(fakeData.find(p => p.id === productId))
 
   const handleAddToBasket = () => {}
 

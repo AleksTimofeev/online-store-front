@@ -22,7 +22,7 @@ export const Header = () => {
         <div className={styles.container}>
           <nav className={styles.navigation}>
             <NavLink to={'/'}>Главная</NavLink>
-            <NavLink to={'/catalog/all'}>Каталог</NavLink>
+            <NavLink to={'/catalog'}>Каталог</NavLink>
             <NavLink to={'/contacts'}>Контакты</NavLink>
           </nav>
           <div className={styles.userInfo}>

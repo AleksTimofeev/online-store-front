@@ -8,14 +8,14 @@ import styles from './App.module.scss'
 import {HomePage} from "./pages/HomePage/HomePage";
 import {CatalogPage} from "./pages/CatalogPage/CatalogPage";
 import {Footer} from "./components/Footer/Footer";
-import {Products} from "./pages/CatalogPage/Products/Products";
 import {ProductPage} from "./pages/ProductPage/ProductPage";
+import {Basket} from "./pages/Basket/Basket";
+import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
 
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector(state => state.auth.isAuth)
-  const appStatus = useAppSelector(state => state.app.appStatus)
 
   useEffect(() => {
     if (!isAuth) {
@@ -30,13 +30,13 @@ function App() {
         <Routes>
           <Route path={''} element={<HomePage/>}/>
           <Route path={'login'} element={<LoginPage/>}/>
-          <Route path={'catalog'} element={<CatalogPage/>}>
-            <Route path={':category'} element={<Products/>} >
-            {/*<Route path={':category/:product'} element={<ProductPage />} />*/}
-              <Route path={':product'} element={<ProductPage/>}/>
-            </Route>
-
-          </Route>
+          <Route path={'catalog'} element={<CatalogPage/>}/>
+          <Route path={'catalog/:productId'} element={<ProductPage/>}/>
+          <Route path={'basket'} element={
+            <PrivateRoute>
+              <Basket/>
+            </PrivateRoute>
+          }/>
         </Routes>
       </div>
       <Footer/>
