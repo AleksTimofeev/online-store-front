@@ -41,22 +41,21 @@ export const HomePage = () => {
         <div className={styles.productWrapper}>
           <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
         </div>
-
-        {/*<CardProduct imgUrl={'#'} title={'title'} price={500} />*/}
-        {/*<CardProduct imgUrl={'#'} title={'title'} price={500} />*/}
-        {/*<CardProduct imgUrl={'#'} title={'title'} price={500} />*/}
-        {/*<CardProduct imgUrl={'#'} title={'title'} price={500} />*/}
       </div>
       <div className={styles.sectionProducts}>
         <h3>Товары со скидкой</h3>
-        <CardProduct id={'1002'} imgUrl={'#'} title={'title 002'} description={'description 001002'} price={400} />
-        <CardProduct id={'1002'} imgUrl={'#'} title={'title 002'} description={'description 001002'} price={400} />
-        <CardProduct id={'1002'} imgUrl={'#'} title={'title 002'} description={'description 001002'} price={400} />
-        <CardProduct id={'1002'} imgUrl={'#'} title={'title 002'} description={'description 001002'} price={400} />
-        {/*<CardProduct imgUrl={'#'} title={'title'} price={500} />*/}
-        {/*<CardProduct imgUrl={'#'} title={'title'} price={500} />*/}
-        {/*<CardProduct imgUrl={'#'} title={'title'} price={500} />*/}
-        {/*<CardProduct imgUrl={'#'} title={'title'} price={500} />*/}
+        <div className={styles.productWrapper}>
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+        </div>
+        <div className={styles.productWrapper}>
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+        </div>
+        <div className={styles.productWrapper}>
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+        </div>
+        <div className={styles.productWrapper}>
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+        </div>
       </div>
     </div>
   );

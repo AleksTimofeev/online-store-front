@@ -90,8 +90,6 @@ export const CatalogPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <div className={styles.wrapper}>
-          <div className={styles.title}></div>
           <ul className={styles.productList}>
             {fakeData.map(p => (
               <li key={p.id} className={styles.productWrapper}>
@@ -104,7 +102,6 @@ export const CatalogPage = () => {
             changeCurrentPage={handleChangeCurrentPage}
             changePageSize={handleChangePageSize}
           />
-        </div>
       </div>
     </div>
   );
