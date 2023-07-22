@@ -9,18 +9,10 @@ import {logout} from "../authorization/authReducer";
 export const HeaderProfile = () => {
 
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const userName = useAppSelector(state => state.auth.user?.login)
 
   const handleLogout = () => {
     dispatch(logout())
-  }
-  const handleGoToProfile = () => {
-    if(userName){
-      navigate('/profile')
-    }else{
-      navigate('/login')
-    }
   }
 
   return (
@@ -28,8 +20,14 @@ export const HeaderProfile = () => {
       <span>{profileIcon}
       {userName}</span>
       <div className={styles.menu}>
-        <span onClick={handleGoToProfile}>Профиль</span>
-        <span onClick={handleLogout}>Выйти</span>
+        {userName ? <>
+          <NavLink to='profile'>Профиль</NavLink>
+          <span onClick={handleLogout}>Выйти</span>
+        </> : <>
+          <NavLink to='login'>Войти</NavLink>
+          <NavLink to='registration'>Регистрация</NavLink>
+        </>
+        }
       </div>
     </div>
   );
