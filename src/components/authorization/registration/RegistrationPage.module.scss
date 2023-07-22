@@ -1,0 +1,24 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  max-width: 600px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .inputError {
+    color: red;
+  }
+  button {
+    align-self: flex-end;
+  }
+}

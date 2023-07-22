@@ -11,6 +11,7 @@ import {Footer} from "./components/Footer/Footer";
 import {ProductPage} from "./pages/ProductPage/ProductPage";
 import {Basket} from "./pages/Basket/Basket";
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
+import {RegistrationPage} from "./components/authorization/registration/RegistrationPage";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Routes>
           <Route path={''} element={<HomePage/>}/>
           <Route path={'login'} element={<LoginPage/>}/>
+          <Route path={'registration'} element={<RegistrationPage/>}/>
           <Route path={'catalog'} element={<CatalogPage/>}/>
           <Route path={'catalog/:productId'} element={<ProductPage/>}/>
           <Route path={'basket'} element={
