@@ -30,31 +30,31 @@ export const HomePage = () => {
       <div className={styles.sectionProducts}>
         <h3>Новинки</h3>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={77} />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={77} />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={77} />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={77} />
         </div>
       </div>
       <div className={styles.sectionProducts}>
         <h3>Товары со скидкой</h3>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={50} />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={88} />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={90} />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} />
+          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={67} />
         </div>
       </div>
     </div>
