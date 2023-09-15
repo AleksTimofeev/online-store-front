@@ -1,12 +1,14 @@
 import axios, {InternalAxiosRequestConfig} from "axios";
 
+const baseUrl = process.env.REACT_APP_BASE_URL
+//https://online-store-zeta-sage.vercel.app/auth/
 
 const instance = axios.create({
-  baseURL: 'https://online-store-zeta-sage.vercel.app/auth/',
+  baseURL: `${baseUrl}/auth`,
 })
 
 export const authInstance = axios.create({
-  baseURL: 'https://online-store-zeta-sage.vercel.app/auth/'
+  baseURL: `${baseUrl}/auth`
 })
 const authRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
   config.headers.Authorization = `Bearer ${localStorage.getItem('my token')}`
