@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import styles from './Catalog.module.scss'
-import {CardProduct} from "../../components/CardProduct/CardProduct";
 import {Pagination} from "../../components/Pagination/Pagination";
 import axios from "axios";
 
