@@ -3,7 +3,7 @@ import axios, {InternalAxiosRequestConfig} from "axios";
 const baseUrl = process.env.REACT_APP_BASE_URL
 //https://online-store-zeta-sage.vercel.app/auth/
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: `${baseUrl}/auth`,
 })
 
