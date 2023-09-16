@@ -1,9 +1,13 @@
 import React, {useEffect} from 'react';
 import styles from './Catalog.module.scss'
 import {Pagination} from "../../components/Pagination/Pagination";
-import axios from "axios";
+import {useAppDispatch, useAppSelector} from "../../store/store";
+import {getProducts} from "./catalogReducer";
 
 export const Catalog = () => {
+
+  const dispatch = useAppDispatch()
+  const products = useAppSelector(state => state.catalog.products)
 
   const handleChangeCurrentPage = (currentPage: number) => {
     console.log('current page ' + currentPage)
@@ -13,21 +17,20 @@ export const Catalog = () => {
   }
 
   useEffect(() => {
-    axios.get('https://online-store-zeta-sage.vercel.app/products')
-      .then(data => console.log(data))
-      .catch(e => console.log(e))
+    dispatch(getProducts())
   }, [])
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-          {/*<ul className={styles.productList}>*/}
-          {/*  {fakeData.map(p => (*/}
-          {/*    <li key={p.id} className={styles.productWrapper}>*/}
-          {/*      <CardProduct {...p} />*/}
-          {/*    </li>*/}
-          {/*  ))}*/}
-          {/*</ul>*/}
+          <ul className={styles.productList}>
+            {products && products.map(p => (
+              <li key={p.id} className={styles.productWrapper}>
+                {p.title}
+                {/*<CardProduct {...p} />*/}
+              </li>
+            ))}
+          </ul>
           <Pagination
             totalProductsCount={530}
             changeCurrentPage={handleChangeCurrentPage}

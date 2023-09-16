@@ -4,7 +4,8 @@ const baseUrl = process.env.REACT_APP_BASE_URL
 //https://online-store-zeta-sage.vercel.app/auth/
 
 export const instance = axios.create({
-  baseURL: `${baseUrl}/auth`,
+  // baseURL: `${baseUrl}/`,
+  baseURL: `https://online-store-zeta-sage.vercel.app/`,
 })
 
 export const authInstance = axios.create({
@@ -20,14 +21,14 @@ authInstance.interceptors.request.use(authRequest)
 export const authApi = {
 
   registration(params: RegistrationType){
-    return instance.post<RegistrationResponseType>('registration', params)
+    return instance.post<RegistrationResponseType>('auth/registration', params)
       .then(data => data.data.token)
   },
   auth(){
     return authInstance.get('').then(data => data)
   },
   login(params: LoginType){
-    return instance.post<LoginResponseType>('login', params)
+    return instance.post<LoginResponseType>('auth/login', params)
       .then(data => data.data.token)
   }
 
