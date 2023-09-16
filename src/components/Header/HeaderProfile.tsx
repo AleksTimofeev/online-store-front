@@ -4,7 +4,7 @@ import {profileIcon} from "../../assets/icons/profile";
 
 import {NavLink, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../store/store";
-import {logout} from "../authorization/authReducer";
+import {logout} from "../../features/auth/authReducer";
 
 export const HeaderProfile = () => {
 
