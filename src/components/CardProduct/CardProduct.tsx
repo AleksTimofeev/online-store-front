@@ -1,27 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './CardProduct.module.scss'
 import {useNavigate} from "react-router-dom";
 import {Rating} from "../Rating/Rating";
+import {ProductType} from "../../api/productsApi";
+import {Button} from "../Button/Button";
+import axios from "axios";
 
-type PropsType = {
-  id: string
-  imgUrl: string
-  title: string
-  description: string
-  price: number
-  rating: number
-}
+type PropsType = {} & ProductType
 
 export const CardProduct: React.FC<PropsType> = ({
                                                    id,
-                                                   imgUrl,
+                                                   minDescription,
                                                    description,
+                                                   imgUrlLarge, imgUrlSmall,
                                                    price,
                                                    title,
-  rating
+                                                   rating
                                                  }) => {
 
   const navigate = useNavigate()
+
+  const handleLoadImg = () => {
+    console.log('load img')
+  }
 
   const handleGoToProduct = () => {
     navigate(`/catalog/${id}`)
@@ -30,17 +31,23 @@ export const CardProduct: React.FC<PropsType> = ({
   return (
     <div
       className={styles.wrapper}
-      onClick={handleGoToProduct}
     >
       <div className={styles.imgContainer}>
-        <img src={imgUrl} width='200' height='200' alt="img"/>
+        <img onLoad={handleLoadImg} src={imgUrlSmall} alt="img"/>
       </div>
-      <div className={styles.title}>{title}</div>
+      <div
+        onClick={handleGoToProduct}
+        className={styles.title}>{title}</div>
       <div className={styles.description}>
         {description}
       </div>
-      <Rating rating={rating} />
+      <div className={styles.rating}>
+        <Rating rating={rating}/>
+      </div>
       <div className={styles.price}><span>$</span><span>{price}</span></div>
+      <div className={styles.button}>
+        <Button>add in basket</Button>
+      </div>
     </div>
   );
 }

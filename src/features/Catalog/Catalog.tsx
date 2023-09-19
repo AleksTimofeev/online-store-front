@@ -3,6 +3,7 @@ import styles from './Catalog.module.scss'
 import {Pagination} from "../../components/Pagination/Pagination";
 import {useAppDispatch, useAppSelector} from "../../store/store";
 import {getProducts} from "./catalogReducer";
+import {CardProduct} from "../../components/CardProduct/CardProduct";
 
 export const Catalog = () => {
 
@@ -26,8 +27,7 @@ export const Catalog = () => {
           <ul className={styles.productList}>
             {products && products.map(p => (
               <li key={p.id} className={styles.productWrapper}>
-                {p.title}
-                {/*<CardProduct {...p} />*/}
+                <CardProduct {...p} />
               </li>
             ))}
           </ul>
