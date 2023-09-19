@@ -3,7 +3,7 @@ import styles from './Header.module.scss'
 import {NavLink, useNavigate} from "react-router-dom";
 import {basketIcon} from '../../assets/icons/basket'
 import {HeaderProfile} from "./HeaderProfile";
-import {LinearPreloader} from "../LinearPreloader/LinearPreloader";
+import {LinearLoader} from "../Loaders/LinearLoader/LinearLoader";
 import {useAppSelector} from "../../store/store";
 
 
@@ -37,7 +37,7 @@ export const Header = () => {
           </div>
         </div>
         <div className={styles.preloader}>
-          {appStatus === 'loading' && <LinearPreloader/>}
+          {appStatus === 'loading' && <LinearLoader/>}
         </div>
       </div>
     </>

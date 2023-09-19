@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './LinearPreloader.module.scss'
+import styles from './LinearLoader.module.scss'
 
-export const LinearPreloader = () => {
+export const LinearLoader = () => {
   return (
     <div className={styles.barContainer}>
       <div className={styles.bar}></div>
