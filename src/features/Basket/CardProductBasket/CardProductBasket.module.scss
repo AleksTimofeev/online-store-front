@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  .imgContainer {
+    width: 25%;
+
+    img {
+      width: 100%;
+    }
+  }
+  .productInfo {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .title {}
+    .description {}
+    .price {}
+  }
+}
