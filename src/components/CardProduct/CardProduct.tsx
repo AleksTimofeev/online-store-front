@@ -5,6 +5,8 @@ import {Rating} from "../Rating/Rating";
 import {ProductType} from "../../api/productsApi";
 import {Button} from "../Button/Button";
 import noImg from '../../assets/noImg.jpg'
+import {useAppDispatch, useAppSelector} from "../../store/store";
+import {addProductInBasket} from "../../features/Basket/basketReducer";
 
 type PropsType = {} & ProductType
 
@@ -18,10 +20,20 @@ export const CardProduct: React.FC<PropsType> = ({
                                                    rating
                                                  }) => {
 
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const isAuth = useAppSelector(state => state.auth.isAuth)
 
   const handleGoToProduct = () => {
     navigate(`/catalog/${id}`)
+  }
+
+  const handleAddProductInBasket = () => {
+    if(isAuth){
+      dispatch(addProductInBasket({productId: id}))
+    }else{
+      navigate('/login')
+    }
   }
 
   return (
@@ -44,7 +56,7 @@ export const CardProduct: React.FC<PropsType> = ({
       </div>
       <div className={styles.price}><span>$</span><span>{price}</span></div>
       <div className={styles.button}>
-        <Button>add in basket</Button>
+        <Button onClick={handleAddProductInBasket}>add in basket</Button>
       </div>
     </div>
   );
