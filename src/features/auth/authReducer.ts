@@ -1,11 +1,11 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {authApi, LoginType, RegistrationType} from "../../api/authApi";
 import jwtDecode from "jwt-decode";
-import axios from "axios";
+import axios, {isAxiosError} from "axios";
 import {RequestStatusType} from "../../types";
 import {changeAppStatus} from "../../store/appReducer";
 
-export const registration = createAsyncThunk<UserType, RegistrationType, { rejectValue: string }>(
+export const registration = createAsyncThunk<UserType, RegistrationType, { rejectValue: { message: string } }>(
   'auth/registration', async (arg, thunkAPI) => {
     thunkAPI.dispatch(changeAuthenticationStatus('loading'))
     thunkAPI.dispatch(changeAppStatus('loading'))
@@ -15,9 +15,13 @@ export const registration = createAsyncThunk<UserType, RegistrationType, { rejec
       thunkAPI.dispatch(changeAuthenticationStatus('idle'))
       return jwtDecode<UserType>(token)
     } catch (e) {
-      console.log(e)
-      thunkAPI.dispatch(changeAuthenticationStatus('failed'))
-      return thunkAPI.rejectWithValue('error')
+      let errorMessage: string
+      if (isAxiosError(e)) {
+        errorMessage = e.response ? e.response.data.message : e.message
+        return thunkAPI.rejectWithValue({message: errorMessage})
+      } else {
+        return thunkAPI.rejectWithValue({message: 'Что-то пошло не так.'})
+      }
     }
     finally {
       thunkAPI.dispatch(changeAppStatus('idle'))
@@ -25,7 +29,7 @@ export const registration = createAsyncThunk<UserType, RegistrationType, { rejec
   }
 )
 
-export const auth = createAsyncThunk<UserType, undefined, { rejectValue: string }>(
+export const auth = createAsyncThunk<UserType, undefined, { rejectValue: { message: string } }>(
   'auth/auth', async (arg, thunkAPI) => {
     thunkAPI.dispatch(changeAuthenticationStatus('loading'))
     thunkAPI.dispatch(changeAppStatus('loading'))
@@ -37,16 +41,16 @@ export const auth = createAsyncThunk<UserType, undefined, { rejectValue: string 
         return jwtDecode<UserType>(token)
       } else {
         thunkAPI.dispatch(changeAuthenticationStatus('failed'))
-        return thunkAPI.rejectWithValue('error')
+        return thunkAPI.rejectWithValue({message: 'error'})
       }
     } catch (e) {
-      if(axios.isAxiosError(e)){
-        const errorMessage = e.response ? e.response.data.message : e.message
-        thunkAPI.dispatch(changeAuthenticationStatus('failed'))
-        return thunkAPI.rejectWithValue(errorMessage)
+      let errorMessage: string
+      if (isAxiosError(e)) {
+        errorMessage = e.response ? e.response.data.message : e.message
+        return thunkAPI.rejectWithValue({message: errorMessage})
+      } else {
+        return thunkAPI.rejectWithValue({message: 'Что-то пошло не так.'})
       }
-      thunkAPI.dispatch(changeAuthenticationStatus('failed'))
-      return thunkAPI.rejectWithValue('error')
     }
     finally {
       thunkAPI.dispatch(changeAppStatus('idle'))
@@ -54,7 +58,7 @@ export const auth = createAsyncThunk<UserType, undefined, { rejectValue: string 
   }
 )
 
-export const login = createAsyncThunk<UserType, LoginType, { rejectValue: string }>(
+export const login = createAsyncThunk<UserType, LoginType, { rejectValue: { message: string } }>(
   'auth/login', async (arg, thunkAPI) => {
     thunkAPI.dispatch(changeAuthenticationStatus('loading'))
     thunkAPI.dispatch(changeAppStatus('loading'))
@@ -64,9 +68,13 @@ export const login = createAsyncThunk<UserType, LoginType, { rejectValue: string
       thunkAPI.dispatch(changeAuthenticationStatus('idle'))
       return jwtDecode<UserType>(token)
     } catch (e) {
-      console.log(e)
-      thunkAPI.dispatch(changeAuthenticationStatus('failed'))
-      return thunkAPI.rejectWithValue('error')
+      let errorMessage: string
+      if (isAxiosError(e)) {
+        errorMessage = e.response ? e.response.data.message : e.message
+        return thunkAPI.rejectWithValue({message: errorMessage})
+      } else {
+        return thunkAPI.rejectWithValue({message: 'Что-то пошло не так.'})
+      }
     }
     finally {
       thunkAPI.dispatch(changeAppStatus('idle'))
@@ -100,7 +108,7 @@ const slice = createSlice({
       state.error = null
     })
     builder.addCase(registration.rejected, (state, action) => {
-      if (action.payload) state.error = action.payload
+      if (action.payload) state.error = action.payload.message
       state.user = null
       state.isAuth = false
     })
@@ -111,7 +119,7 @@ const slice = createSlice({
       state.error = null
     })
     builder.addCase(auth.rejected, (state, action) => {
-      if (action.payload) state.error = action.payload
+      if (action.payload) state.error = action.payload.message
       state.isAuth = false
       state.user = null
     })
@@ -122,7 +130,7 @@ const slice = createSlice({
       state.error = null
     })
     builder.addCase(login.rejected, (state, action) => {
-      if (action.payload) state.error = action.payload
+      if (action.payload) state.error = action.payload.message
       state.isAuth = false
       state.user = null
     })
