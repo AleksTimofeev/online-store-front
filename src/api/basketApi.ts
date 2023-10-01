@@ -11,7 +11,10 @@ export const basketApi = {
     return authInstance.post<BasketType>(`users/addInBasket/${productId}`)
       .then(data => data.data)
   },
-  removeProductInBasket(){},
+  removeProductInBasket<BasketType>(productId: string){
+    return authInstance.delete(`users/remove-product-basket/${productId}`)
+      .then(data => data.data)
+  },
   changeCountProductInBasket(){}
 }
 

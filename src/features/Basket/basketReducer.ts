@@ -33,6 +33,22 @@ export const addProductInBasket = createAsyncThunk<BasketType, { productId: stri
   }
 )
 
+export const removeProductBasket = createAsyncThunk<BasketType, { productId: string }, { rejectValue: { message: string } }>(
+  'basket/removeProductBasket', async (arg, thunkAPI) => {
+    try {
+      return await basketApi.removeProductInBasket(arg.productId)
+    } catch (e) {
+      let errorMessage: string
+      if (isAxiosError(e)) {
+        errorMessage = e.response ? e.response.data.message : e.message
+        return thunkAPI.rejectWithValue({message: errorMessage})
+      } else {
+        return thunkAPI.rejectWithValue({message: 'Что-то пошло не так.'})
+      }
+    }
+  }
+)
+
 const slice = createSlice({
   name: 'basket',
   initialState: {} as BasketReducerType,
@@ -49,6 +65,12 @@ const slice = createSlice({
       state.basket = action.payload
     })
     builder.addCase(addProductInBasket.rejected, () => {})
+
+    builder.addCase(removeProductBasket.pending, () => {})
+    builder.addCase(removeProductBasket.fulfilled, (state, action) => {
+      state.basket = action.payload
+    })
+    builder.addCase(removeProductBasket.rejected, () => {})
   }
 })
 

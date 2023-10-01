@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {ProductType} from "../../../api/productsApi";
 import styles from './CardProductBasket.module.scss'
+import {useAppDispatch} from "../../../store/store";
+import {removeProductBasket} from "../basketReducer";
 
 type PropsType = {} & ProductType
 
@@ -15,8 +17,14 @@ export const CardProductBasket: React.FC<PropsType> = ({
                                                          id
                                                        }) => {
 
+  const dispatch = useAppDispatch()
+
   const handleChangeCount = () => {
 
+  }
+
+  const handleRemoveProduct = () => {
+    dispatch(removeProductBasket({productId: id}))
   }
 
   return (
@@ -29,6 +37,7 @@ export const CardProductBasket: React.FC<PropsType> = ({
         <div className={styles.description}>{minDescription}</div>
         <div className={styles.price}>{price}</div>
       </div>
+      <button onClick={handleRemoveProduct}>Убрать из корзины</button>
     </div>
   );
 }

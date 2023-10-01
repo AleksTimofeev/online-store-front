@@ -1,3 +1,13 @@
 .wrapper {
   width: 100%;
+
+  .productsList {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+
+    .product {
+      margin-bottom: 20px;
+    }
+  }
 }
