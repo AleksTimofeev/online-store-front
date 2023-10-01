@@ -11,6 +11,7 @@ export const Header = () => {
 
   const navigate = useNavigate()
   const appStatus = useAppSelector(state => state.app.appStatus)
+  const basketProductsCount = useAppSelector(state => state.basket.basket?.products.length)
 
   const handleNavigateToBasket = () => {
     navigate('/basket')
@@ -33,6 +34,7 @@ export const Header = () => {
               onClick={handleNavigateToBasket}
             >
               {basketIcon}
+              {!!basketProductsCount && <span>{basketProductsCount}</span>}
             </div>
           </div>
         </div>
