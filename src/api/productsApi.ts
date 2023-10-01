@@ -3,7 +3,7 @@ import {instance} from "./authApi";
 
 export const productsApi = {
   getProducts() {
-    return instance.get<ProductType[]>(`/products`)
+    return instance.get<ProductType[]>(`products`)
       .then(data => data.data)
   }
 }

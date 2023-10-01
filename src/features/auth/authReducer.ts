@@ -154,7 +154,7 @@ export type UserType = {
   }
   basket: {
     id: string
-    products: ProductType[]
+    // products: ProductType[]
   }
   iat: number
   exp: number

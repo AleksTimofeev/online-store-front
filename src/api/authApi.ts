@@ -15,7 +15,7 @@ export const authApi = {
       .then(data => data.data.token)
   },
   auth(){
-    return authInstance.get('').then(data => data)
+    return authInstance.get('auth').then(data => data)
   },
   login(params: LoginType){
     return instance.post<LoginResponseType>('auth/login', params)
