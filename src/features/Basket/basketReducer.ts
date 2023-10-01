@@ -1,14 +1,37 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {basketApi, BasketType} from "../../api/basketApi";
+import {isAxiosError} from "axios";
 
-export const getBasket = createAsyncThunk<BasketType, {id: string}, {rejectValue: {message: string}}>(
+export const getBasket = createAsyncThunk<BasketType, { id: string }, { rejectValue: { message: string } }>(
   'basket/getBasket', async (arg, thunkAPI) => {
-  try {
-    return await basketApi.getBasket(arg.id)
-  }catch (e) {
-    return thunkAPI.rejectWithValue({message: 'error get basket'})
+    try {
+      return await basketApi.getBasket(arg.id)
+    } catch (e) {
+      let errorMessage: string
+      if (isAxiosError(e)) {
+        errorMessage = e.response ? e.response.data.message : e.message
+        return thunkAPI.rejectWithValue({message: errorMessage})
+      } else {
+        return thunkAPI.rejectWithValue({message: 'Что-то пошло не так.'})
+      }
+    }
+  })
+
+export const addProductInBasket = createAsyncThunk<BasketType, { productId: string }, { rejectValue: { message: string } }>(
+  'basket/addProductInBasket', async (arg, thunkAPI) => {
+    try {
+      return await basketApi.addProductInBasket(arg.productId)
+    } catch (e) {
+      let errorMessage: string
+      if (isAxiosError(e)) {
+        errorMessage = e.response ? e.response.data.message : e.message
+        return thunkAPI.rejectWithValue({message: errorMessage})
+      } else {
+        return thunkAPI.rejectWithValue({message: 'Что-то пошло не так.'})
+      }
+    }
   }
-})
+)
 
 const slice = createSlice({
   name: 'basket',
@@ -20,6 +43,12 @@ const slice = createSlice({
       state.basket = action.payload
     })
     builder.addCase(getBasket.rejected, () => {})
+
+    builder.addCase(addProductInBasket.pending, () => {})
+    builder.addCase(addProductInBasket.fulfilled, (state, action) => {
+      state.basket = action.payload
+    })
+    builder.addCase(addProductInBasket.rejected, () => {})
   }
 })
 
