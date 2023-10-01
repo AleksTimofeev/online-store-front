@@ -3,13 +3,15 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {authReducer} from "../features/auth/authReducer";
 import {appReducer} from "./appReducer";
 import {catalogReducer} from "../features/Catalog/catalogReducer";
+import {basketReducer} from "../features/Basket/basketReducer";
 
 
 export const store = configureStore({
   reducer: {
     app: appReducer,
     auth: authReducer,
-    catalog: catalogReducer
+    catalog: catalogReducer,
+    basket: basketReducer
   },
 })
 
