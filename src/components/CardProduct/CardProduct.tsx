@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from './CardProduct.module.scss'
 import {useNavigate} from "react-router-dom";
 import {Rating} from "../Rating/Rating";
 import {ProductType} from "../../api/productsApi";
 import {Button} from "../Button/Button";
-import axios from "axios";
+import noImg from '../../assets/noImg.jpg'
 
 type PropsType = {} & ProductType
 
@@ -20,10 +20,6 @@ export const CardProduct: React.FC<PropsType> = ({
 
   const navigate = useNavigate()
 
-  const handleLoadImg = () => {
-    console.log('load img')
-  }
-
   const handleGoToProduct = () => {
     navigate(`/catalog/${id}`)
   }
@@ -32,8 +28,10 @@ export const CardProduct: React.FC<PropsType> = ({
     <div
       className={styles.wrapper}
     >
-      <div className={styles.imgContainer}>
-        <img onLoad={handleLoadImg} src={imgUrlSmall} alt="img"/>
+      <div className={styles.imgContainer}
+           onClick={handleGoToProduct}
+      >
+        <img src={imgUrlSmall.length ? imgUrlSmall : noImg} alt="img"/>
       </div>
       <div
         onClick={handleGoToProduct}
