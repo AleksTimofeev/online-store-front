@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {authApi, LoginType, RegistrationType} from "../../api/authApi";
 import jwtDecode from "jwt-decode";
-import axios, {isAxiosError} from "axios";
-import {RequestStatusType} from "../../types";
+import {isAxiosError} from "axios";
+import {RequestStatusType} from "../../constants/types";
 import {changeAppStatus} from "../../store/appReducer";
 
 export const registration = createAsyncThunk<UserType, RegistrationType, { rejectValue: { message: string } }>(
@@ -159,7 +159,7 @@ export type UserType = {
   role: {
     id: string
     role: string
-  }
+  }[]
   basket: {
     id: string
     // products: ProductType[]
