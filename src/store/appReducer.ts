@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RequestStatusType} from "../types";
+import {RequestStatusType} from "../constants/types";
 import {auth} from "../features/auth/authReducer";
 
 

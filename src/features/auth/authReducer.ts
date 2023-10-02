@@ -53,6 +53,7 @@ export const auth = createAsyncThunk<UserType, undefined, { rejectValue: { messa
       }
     }
     finally {
+      thunkAPI.dispatch(changeAuthenticationStatus('idle'))
       thunkAPI.dispatch(changeAppStatus('idle'))
     }
   }
