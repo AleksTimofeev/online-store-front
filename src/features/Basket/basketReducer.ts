@@ -76,6 +76,6 @@ const slice = createSlice({
 
 export const basketReducer = slice.reducer
 
-type BasketReducerType = {
+export type BasketReducerType = {
   basket: BasketType
 }
