@@ -30,31 +30,103 @@ export const HomePage = () => {
       <div className={styles.sectionProducts}>
         <h3>Новинки</h3>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={77} />
+          <CardProduct
+            id={'1001'}
+            imgUrlLarge={'#'}
+            imgUrlSmall={'#'}
+            title={'title 001'}
+            description={'description 001001'}
+            price={300}
+            rating={77}
+            minDescription={'min description'}
+          />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={77} />
+          <CardProduct
+            id={'1001'}
+            imgUrlLarge={'#'}
+            imgUrlSmall={'#'}
+            title={'title 001'}
+            description={'description 001001'}
+            price={300}
+            rating={77}
+            minDescription={'min description'}
+          />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={77} />
+          <CardProduct
+            id={'1001'}
+            imgUrlLarge={'#'}
+            imgUrlSmall={'#'}
+            title={'title 001'}
+            description={'description 001001'}
+            price={300}
+            rating={77}
+            minDescription={'min description'}
+          />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={77} />
+          <CardProduct
+            id={'1001'}
+            imgUrlLarge={'#'}
+            imgUrlSmall={'#'}
+            title={'title 001'}
+            description={'description 001001'}
+            price={300}
+            rating={77}
+            minDescription={'min description'}
+          />
         </div>
       </div>
       <div className={styles.sectionProducts}>
         <h3>Товары со скидкой</h3>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={50} />
+          <CardProduct
+            id={'1001'}
+            imgUrlLarge={'#'}
+            imgUrlSmall={'#'}
+            title={'title 001'}
+            description={'description 001001'}
+            price={300}
+            rating={77}
+            minDescription={'min description'}
+          />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={88} />
+          <CardProduct
+            id={'1001'}
+            imgUrlLarge={'#'}
+            imgUrlSmall={'#'}
+            title={'title 001'}
+            description={'description 001001'}
+            price={300}
+            rating={77}
+            minDescription={'min description'}
+          />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={90} />
+          <CardProduct
+            id={'1001'}
+            imgUrlLarge={'#'}
+            imgUrlSmall={'#'}
+            title={'title 001'}
+            description={'description 001001'}
+            price={300}
+            rating={77}
+            minDescription={'min description'}
+          />
         </div>
         <div className={styles.productWrapper}>
-          <CardProduct id={'1001'} imgUrl={'#'} title={'title 001'} description={'description 001001'} price={300} rating={67} />
+          <CardProduct
+            id={'1001'}
+            imgUrlLarge={'#'}
+            imgUrlSmall={'#'}
+            title={'title 001'}
+            description={'description 001001'}
+            price={300}
+            rating={77}
+            minDescription={'min description'}
+          />
         </div>
       </div>
     </div>
