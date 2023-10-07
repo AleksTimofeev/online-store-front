@@ -4,6 +4,7 @@ import jwtDecode from "jwt-decode";
 import {isAxiosError} from "axios";
 import {RequestStatusType} from "../../constants/types";
 import {changeAppStatus} from "../../store/appReducer";
+import {getBasket} from "../Basket/basketReducer";
 
 export const registration = createAsyncThunk<UserType, RegistrationType, { rejectValue: { message: string } }>(
   'auth/registration', async (arg, thunkAPI) => {
@@ -38,7 +39,9 @@ export const auth = createAsyncThunk<UserType, undefined, { rejectValue: { messa
       const token = localStorage.getItem('my token')
       if (token) {
         thunkAPI.dispatch(changeAuthenticationStatus('idle'))
-        return jwtDecode<UserType>(token)
+        const data = jwtDecode<UserType>(token)
+        thunkAPI.dispatch(getBasket({id: data.basket.id}))
+        return data
       } else {
         thunkAPI.dispatch(changeAuthenticationStatus('failed'))
         return thunkAPI.rejectWithValue({message: 'error'})

@@ -12,18 +12,15 @@ import {Product} from "./features/Product/Product";
 import {Basket} from "./features/Basket/Basket";
 import {PrivateRoute} from "./pages/PrivateRoute/PrivateRoute";
 import {RegistrationPage} from "./features/auth/registration/RegistrationPage";
-import {getBasket} from "./features/Basket/basketReducer";
 
 function App() {
 
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector(state => state.auth.isAuth)
-  const basketId = useAppSelector(state => state.auth.user?.basket.id)
 
   useEffect(() => {
     if (!isAuth) {dispatch(auth())}
-    if (isAuth && basketId) {dispatch(getBasket({id: basketId}))}
-  }, [isAuth])
+  }, [])
 
   return (
     <div className={styles.app}>
