@@ -3,16 +3,20 @@
   justify-content: space-between;
 
   border: 1px solid gray;
+  border-radius: 5px;
+  overflow: hidden;
 
   .imgContainer {
-    width: 25%;
+    width: 110px;
+    height: 110px;
+    margin-right: 16px;
 
     img {
       width: 100%;
     }
   }
   .productInfo {
-    width: 70%;
+    //width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -23,6 +27,7 @@
   }
 
   button {
-    align-self: flex-end;
+    margin: auto 5px 5px auto;
+    //align-self: flex-end;
   }
 }

@@ -3,6 +3,8 @@ import {ProductType} from "../../../api/productsApi";
 import styles from './CardProductBasket.module.scss'
 import {useAppDispatch} from "../../../store/store";
 import {removeProductBasket} from "../basketReducer";
+import {Button} from "../../../components/Button/Button";
+import noImg from '../../../assets/noImg.jpg'
 
 type PropsType = {} & ProductType
 
@@ -30,14 +32,14 @@ export const CardProductBasket: React.FC<PropsType> = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.imgContainer}>
-        <img src={imgUrlSmall} alt="img"/>
+        <img src={imgUrlSmall || noImg} alt="img"/>
       </div>
       <div className={styles.productInfo}>
         <div className={styles.title}>{title}</div>
         <div className={styles.description}>{minDescription}</div>
-        <div className={styles.price}>{price}</div>
+        <div className={styles.price}>$ {price}</div>
       </div>
-      <button onClick={handleRemoveProduct}>Убрать из корзины</button>
+      <Button onClick={handleRemoveProduct}>Убрать из корзины</Button>
     </div>
   );
 }
