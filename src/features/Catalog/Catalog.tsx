@@ -9,6 +9,7 @@ export const Catalog = () => {
 
   const dispatch = useAppDispatch()
   const products = useAppSelector(state => state.catalog.products)
+  const productStatus = useAppSelector(state => state.catalog.productStatus)
 
   const handleChangeCurrentPage = (currentPage: number) => {
     console.log('current page ' + currentPage)
@@ -27,7 +28,9 @@ export const Catalog = () => {
           <ul className={styles.productList}>
             {products && products.map(p => (
               <li key={p.id} className={styles.productWrapper}>
-                <CardProduct {...p} />
+                <CardProduct
+                  addProductInBasketStatus={productStatus.find(pr => pr.productId === p.id) || null}
+                  {...p} />
               </li>
             ))}
           </ul>

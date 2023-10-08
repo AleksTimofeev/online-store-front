@@ -7,8 +7,14 @@ import {Button} from "../Button/Button";
 import noImg from '../../assets/noImg.jpg'
 import {useAppDispatch, useAppSelector} from "../../store/store";
 import {addProductInBasket} from "../../features/Basket/basketReducer";
+import {RequestStatus} from "../../constants/enum";
 
-type PropsType = {} & ProductType
+type PropsType = {
+  addProductInBasketStatus: {
+    productId: string,
+    productStatus: RequestStatus
+  } | null
+} & ProductType
 
 export const CardProduct: React.FC<PropsType> = ({
                                                    id,
@@ -17,7 +23,8 @@ export const CardProduct: React.FC<PropsType> = ({
                                                    imgUrlLarge, imgUrlSmall,
                                                    price,
                                                    title,
-                                                   rating
+                                                   rating,
+                                                   addProductInBasketStatus
                                                  }) => {
 
   const dispatch = useAppDispatch()
@@ -29,9 +36,9 @@ export const CardProduct: React.FC<PropsType> = ({
   }
 
   const handleAddProductInBasket = () => {
-    if(isAuth){
+    if (isAuth) {
       dispatch(addProductInBasket({productId: id}))
-    }else{
+    } else {
       navigate('/login')
     }
   }
@@ -56,7 +63,17 @@ export const CardProduct: React.FC<PropsType> = ({
       </div>
       <div className={styles.price}><span>$</span><span>{price}</span></div>
       <div className={styles.button}>
-        <Button onClick={handleAddProductInBasket}>add in basket</Button>
+        <Button
+          onClick={handleAddProductInBasket}
+          disabled={addProductInBasketStatus ?
+            addProductInBasketStatus.productStatus === RequestStatus.LOADING:
+            false
+        }
+        >{
+          addProductInBasketStatus && addProductInBasketStatus.productStatus === RequestStatus.LOADING ?
+            'Loading...' :
+          'add in basket'
+        }</Button>
       </div>
     </div>
   );

@@ -40,5 +40,9 @@
   .button {
     align-self: flex-end;
     margin: 0 12px 12px 0;
+
+    button {
+      min-width: 110px;
+    }
   }
 }
