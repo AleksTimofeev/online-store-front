@@ -12,12 +12,13 @@ import {Product} from "./features/Product/Product";
 import {Basket} from "./features/Basket/Basket";
 import {PrivateRoute} from "./pages/PrivateRoute/PrivateRoute";
 import {RegistrationPage} from "./features/auth/registration/RegistrationPage";
+import {RequestStatus} from "./constants/enum";
 
 function App() {
 
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector(state => state.auth.isAuth)
-
+  const appStatus = useAppSelector(state => state.app.appStatus)
   useEffect(() => {
     if (!isAuth) {dispatch(auth())}
   }, [])
@@ -25,7 +26,7 @@ function App() {
   return (
     <div className={styles.app}>
       <Header/>
-      <div className={styles.body}>
+      {appStatus === RequestStatus.SUCCEEDED && <div className={styles.body}>
         <Routes>
           <Route path={''} element={<HomePage/>}/>
           <Route path={'login'} element={<LoginPage/>}/>
@@ -38,7 +39,7 @@ function App() {
             </PrivateRoute>
           }/>
         </Routes>
-      </div>
+      </div>}
       <Footer/>
     </div>
   );

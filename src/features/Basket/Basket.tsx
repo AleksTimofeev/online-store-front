@@ -10,13 +10,13 @@ export const Basket = () => {
   return (
     <div className={styles.wrapper}>
       <h2>Корзина</h2>
-      <div className={styles.productsList}>
+      {basket && <div className={styles.productsList}>
         {basket.products.map(pr => (
           <div className={styles.product} key={pr.id}>
             <CardProductBasket {...pr} />
           </div>
         ))}
-      </div>
+      </div>}
     </div>
   );
 }

@@ -5,11 +5,13 @@ import {isAxiosError} from "axios";
 import {RequestStatusType} from "../../constants/types";
 import {changeAppStatus} from "../../store/appReducer";
 import {getBasket} from "../Basket/basketReducer";
+import {RequestStatus} from "../../constants/enum";
 
 export const registration = createAsyncThunk<UserType, RegistrationType, { rejectValue: { message: string } }>(
   'auth/registration', async (arg, thunkAPI) => {
     thunkAPI.dispatch(changeAuthenticationStatus('loading'))
     thunkAPI.dispatch(changeAppStatus('loading'))
+
     try {
       const token = await authApi.registration(arg)
       localStorage.setItem('my token', token)
@@ -36,11 +38,13 @@ export const auth = createAsyncThunk<UserType, undefined, { rejectValue: { messa
     thunkAPI.dispatch(changeAppStatus('loading'))
     try {
       await authApi.auth()
+      thunkAPI.dispatch(changeIsAuth(true))
       const token = localStorage.getItem('my token')
       if (token) {
         thunkAPI.dispatch(changeAuthenticationStatus('idle'))
         const data = jwtDecode<UserType>(token)
         thunkAPI.dispatch(getBasket({id: data.basket.id}))
+        thunkAPI.dispatch(changeAppStatus(RequestStatus.SUCCEEDED))
         return data
       } else {
         thunkAPI.dispatch(changeAuthenticationStatus('failed'))
@@ -57,7 +61,7 @@ export const auth = createAsyncThunk<UserType, undefined, { rejectValue: { messa
     }
     finally {
       thunkAPI.dispatch(changeAuthenticationStatus('idle'))
-      thunkAPI.dispatch(changeAppStatus('idle'))
+      thunkAPI.dispatch(changeAppStatus(RequestStatus.SUCCEEDED))
     }
   }
 )
@@ -98,12 +102,15 @@ const slice = createSlice({
     user: null,
     error: null,
     isAuth: false,
-    authenticationStatus: 'idle'
+    authenticationStatus: 'loading'
   } as AuthReducerType,
   reducers: {
     changeAuthenticationStatus: (state, action: PayloadAction<RequestStatusType>) => {
       state.authenticationStatus = action.payload
-  }
+  },
+    changeIsAuth: (state, action) => {
+      state.isAuth = action.payload
+    }
   },
   extraReducers: builder => {
     builder.addCase(registration.fulfilled, (state, action) => {
@@ -119,7 +126,7 @@ const slice = createSlice({
 
     builder.addCase(auth.fulfilled, (state, action) => {
       state.user = action.payload
-      state.isAuth = true
+      // state.isAuth = true
       state.error = null
     })
     builder.addCase(auth.rejected, (state, action) => {
@@ -146,7 +153,7 @@ const slice = createSlice({
   }
 })
 
-export const {changeAuthenticationStatus} = slice.actions
+export const {changeAuthenticationStatus, changeIsAuth} = slice.actions
 export const authReducer = slice.reducer
 
 export type AuthReducerType = {
