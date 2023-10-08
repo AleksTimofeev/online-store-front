@@ -6,10 +6,9 @@ let state: BasketReducerType
 
 beforeEach(() => {
   state = {
-    basket: {
-      id: '001001',
-      products: []
-    }
+    basket: null,
+    removeProductStatus: [],
+    changeCountProductStatus: []
   }
 })
 const basketResponse: BasketType ={
@@ -51,13 +50,13 @@ const basketResponse: BasketType ={
 test('get basket/fulfilled', () => {
   const action = getBasket.fulfilled(basketResponse, '', {id: '001001'})
   const newState = basketReducer(state, action)
-  expect(state.basket.products.length).toBe(0)
+  expect(state.basket).toBeNull()
   expect(newState.basket).toEqual(basketResponse)
 })
 
 test('add product in basket/fulfilled', () => {
   const action = addProductInBasket.fulfilled(basketResponse, '', {productId: '001001'})
   const newState = basketReducer(state, action)
-  expect(state.basket.products.length).toBe(0)
+  expect(state.basket).toBeNull()
   expect(newState.basket).toEqual(basketResponse)
 })

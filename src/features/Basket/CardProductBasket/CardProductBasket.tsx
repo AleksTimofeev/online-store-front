@@ -1,12 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ProductType} from "../../../api/productsApi";
 import styles from './CardProductBasket.module.scss'
 import {useAppDispatch} from "../../../store/store";
 import {removeProductBasket} from "../basketReducer";
 import {Button} from "../../../components/Button/Button";
 import noImg from '../../../assets/noImg.jpg'
+import {RequestStatus} from "../../../constants/enum";
 
-type PropsType = {} & ProductType
+type PropsType = {
+  removeProductStatus: {
+  productId: string,
+  productStatus: RequestStatus
+} | null
+} & ProductType
 
 export const CardProductBasket: React.FC<PropsType> = ({
                                                          title,
@@ -16,7 +22,8 @@ export const CardProductBasket: React.FC<PropsType> = ({
                                                          minDescription,
                                                          imgUrlLarge,
                                                          imgUrlSmall,
-                                                         id
+                                                         id,
+                                                         removeProductStatus
                                                        }) => {
 
   const dispatch = useAppDispatch()
@@ -39,7 +46,14 @@ export const CardProductBasket: React.FC<PropsType> = ({
         <div className={styles.description}>{minDescription}</div>
         <div className={styles.price}>$ {price}</div>
       </div>
-      <Button onClick={handleRemoveProduct}>Убрать из корзины</Button>
+      <Button
+        onClick={handleRemoveProduct}
+        disabled={
+        removeProductStatus ?
+          removeProductStatus.productStatus === RequestStatus.LOADING :
+          false
+        }
+      >Убрать из корзины</Button>
     </div>
   );
 }
