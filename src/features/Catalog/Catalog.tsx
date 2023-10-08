@@ -11,7 +11,7 @@ export const Catalog = () => {
   const products = useAppSelector(state => state.catalog.products)
   const productStatus = useAppSelector(state => state.catalog.productStatus)
   const [pageNumber, setPageNumber] = useState<number>(1)
-  const [pageSize, setPageSize] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
   const [totalPagesCount, setTotalPagesCount] = useState(Math.ceil(products.totalCount / pageSize))
 
   const handleChangePageNumber = (pageNumber: number) => {
