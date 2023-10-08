@@ -1,13 +1,24 @@
 import {instance} from "./authApi";
 
 
+
+
 export const productsApi = {
-  getProducts() {
-    return instance.get<ProductType[]>(`products`)
+  getProducts(param: GetProductsRequestType) {
+    const {pageNumber, pageSize} = param
+    return instance.get<GetProductsResponseType>(`products?page-number=${pageNumber}&page-size=${pageSize}`)
       .then(data => data.data)
   }
 }
 
+export type GetProductsRequestType = {
+  pageNumber: number
+  pageSize: number
+}
+export type GetProductsResponseType = {
+  products: ProductType[]
+  totalCount: number
+}
 export type ProductType = {
   id: string
   title: string

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Catalog.module.scss'
 import {Pagination} from "../../components/Pagination/Pagination";
 import {useAppDispatch, useAppSelector} from "../../store/store";
@@ -10,23 +10,27 @@ export const Catalog = () => {
   const dispatch = useAppDispatch()
   const products = useAppSelector(state => state.catalog.products)
   const productStatus = useAppSelector(state => state.catalog.productStatus)
+  const [pageNumber, setPageNumber] = useState<number>(1)
+  const [pageSize, setPageSize] = useState(1)
+  const [totalPagesCount, setTotalPagesCount] = useState(Math.ceil(products.totalCount / pageSize))
 
-  const handleChangeCurrentPage = (currentPage: number) => {
-    console.log('current page ' + currentPage)
+  const handleChangePageNumber = (pageNumber: number) => {
+    setPageNumber(pageNumber)
   }
   const handleChangePageSize = (pageSize: number) => {
-    console.log('page size ' + pageSize)
+    setPageSize(pageSize)
+    setTotalPagesCount(Math.ceil(products.totalCount / pageSize))
   }
 
   useEffect(() => {
-    dispatch(getProducts())
-  }, [])
+    dispatch(getProducts({pageSize, pageNumber}))
+  }, [pageNumber, pageSize])
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
           <ul className={styles.productList}>
-            {products && products.map(p => (
+            {products && products.products.map(p => (
               <li key={p.id} className={styles.productWrapper}>
                 <CardProduct
                   addProductInBasketStatus={productStatus.find(pr => pr.productId === p.id) || null}
@@ -35,8 +39,11 @@ export const Catalog = () => {
             ))}
           </ul>
           <Pagination
-            totalProductsCount={530}
-            changeCurrentPage={handleChangeCurrentPage}
+            totalPagesCount={totalPagesCount}
+            pageNumber={pageNumber}
+            pageSize={pageSize}
+            totalProductsCount={products.totalCount}
+            changePageNumber={handleChangePageNumber}
             changePageSize={handleChangePageSize}
           />
       </div>

@@ -1,13 +1,13 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {productsApi, ProductType} from "../../api/productsApi";
+import {GetProductsResponseType, productsApi, GetProductsRequestType} from "../../api/productsApi";
 import {isAxiosError} from "axios";
 import {addProductInBasket} from "../Basket/basketReducer";
 import {RequestStatus} from "../../constants/enum";
 
-export const getProducts = createAsyncThunk<ProductType[], undefined, { rejectValue: { message: string } }>(
+export const getProducts = createAsyncThunk<GetProductsResponseType, GetProductsRequestType, { rejectValue: { message: string } }>(
   'catalog', async (arg, thunkAPI) => {
     try {
-      const products = await productsApi.getProducts()
+      const products = await productsApi.getProducts(arg)
       return products
     } catch (e) {
       let errorMessage: string
@@ -24,7 +24,10 @@ export const getProducts = createAsyncThunk<ProductType[], undefined, { rejectVa
 const slice = createSlice({
   name: 'catalog',
   initialState: {
-    products: [],
+    products: {
+      products: [],
+      totalCount: 0
+    },
     productStatus: []
   } as CatalogReducerType,
   reducers: {},
@@ -38,7 +41,7 @@ const slice = createSlice({
     })
 
     builder.addCase(addProductInBasket.pending, (state, action) => {
-      state.products.forEach(pr => {
+      state.products.products.forEach(pr => {
         if (pr.id === action.meta.arg.productId) {
           return state.productStatus.push({productId: action.meta.arg.productId, productStatus: RequestStatus.LOADING})
         }
@@ -58,7 +61,7 @@ const slice = createSlice({
 export const catalogReducer = slice.reducer
 
 type CatalogReducerType = {
-  products: ProductType[]
+  products: GetProductsResponseType
   productStatus: {
     productId: string,
     productStatus: RequestStatus

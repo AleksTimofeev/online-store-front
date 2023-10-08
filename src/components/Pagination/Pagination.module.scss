@@ -14,10 +14,14 @@
       transition: .3s;
     }
   }
-  .activePage {
+  span {
     padding: 3px 12px;
     font-size: 1.2em;
+    cursor: pointer;
+  }
+  .activePage {
     font-weight: bold;
+    cursor: not-allowed;
   }
   button:disabled {
     cursor: not-allowed;
