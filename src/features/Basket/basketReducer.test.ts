@@ -1,5 +1,6 @@
 import {addProductInBasket, basketReducer, BasketReducerType, getBasket, removeProductBasket} from "./basketReducer";
 import {BasketType} from "../../api/basketApi";
+import {RequestStatus} from "../../constants/enum";
 
 
 let state: BasketReducerType
@@ -59,4 +60,11 @@ test('add product in basket/fulfilled', () => {
   const newState = basketReducer(state, action)
   expect(state.basket).toBeNull()
   expect(newState.basket).toEqual(basketResponse)
+})
+test('remove product basket/pending', () => {
+  const action = removeProductBasket.pending('', {productId: 'string'}, '')
+  const newState = basketReducer(state, action)
+  expect(newState.removeProductStatus.length).toBe(1)
+  expect(newState.removeProductStatus[0].productId).toBe('string')
+  expect(newState.removeProductStatus[0].productStatus).toBe(RequestStatus.LOADING)
 })

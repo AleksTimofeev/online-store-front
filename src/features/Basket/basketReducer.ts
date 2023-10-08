@@ -79,7 +79,9 @@ const slice = createSlice({
       state.removeProductStatus = state.removeProductStatus.filter(pr => pr.productId !== action.meta.arg.productId)
     })
     builder.addCase(removeProductBasket.rejected, (state, action) => {
-      state.removeProductStatus.map(pr => pr.productId === action.meta.arg.productId ? {...pr, productStatus: RequestStatus.FAILED} : {...pr})
+      state.removeProductStatus.map(pr => pr.productId === action.meta.arg.productId ?
+        {...pr, productStatus: RequestStatus.FAILED} : {...pr}
+      )
     })
   }
 })
