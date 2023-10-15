@@ -48,6 +48,7 @@ export const auth = createAsyncThunk<UserType, undefined, { rejectValue: { messa
         return data
       } else {
         thunkAPI.dispatch(changeAuthenticationStatus('failed'))
+        thunkAPI.dispatch(changeAppStatus(RequestStatus.SUCCEEDED))
         return thunkAPI.rejectWithValue({message: 'error'})
       }
     } catch (e) {
@@ -85,7 +86,7 @@ export const login = createAsyncThunk<UserType, LoginType, { rejectValue: { mess
       }
     }
     finally {
-      thunkAPI.dispatch(changeAppStatus('idle'))
+      thunkAPI.dispatch(changeAppStatus(RequestStatus.SUCCEEDED))
     }
   }
 )

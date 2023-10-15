@@ -42,6 +42,10 @@ const LoginPage = () => {
     }
   },[authenticationStatus])
 
+  useEffect(() => {
+    console.log('isAuth')
+  }, [isAuth])
+
   if (isAuth) {
     return <Navigate to={'/'} />
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Basket.module.scss'
 import {useAppSelector} from "../../store/store";
 import {CardProductBasket} from "./CardProductBasket/CardProductBasket";
@@ -7,6 +7,8 @@ export const Basket = () => {
 
   const basket = useAppSelector(state => state.basket.basket)
   const removeProductStatus = useAppSelector(state => state.basket.removeProductStatus)
+
+  useEffect(() => {}, [])
 
   return (
     <div className={styles.wrapper}>
