@@ -8,6 +8,10 @@ export const productsApi = {
     const {pageNumber, pageSize} = param
     return instance.get<GetProductsResponseType>(`products?page-number=${pageNumber}&page-size=${pageSize}`)
       .then(data => data.data)
+  },
+  getProductById(productId: string){
+    return instance.get<ProductType>(`products/${productId}`)
+      .then(data => data.data)
   }
 }
 
