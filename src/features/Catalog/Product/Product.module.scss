@@ -6,19 +6,31 @@
   margin-top: 50px;
 
   .imgContainer {
-    max-width: 500px;
-    flex-grow: 3;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    background: #006495;
+    img {
+      width: 80%;
+      max-width: 350px;
+      height: fit-content;
+    }
   }
 
   .productDetail {
-    flex-grow: 1;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
     padding: 20px;
 
     box-sizing: border-box;
 
-    background: #cccccc;
+    div {
+
+    }
 
     .title {
       margin-bottom: 30px;
@@ -30,7 +42,7 @@
     .description {
     }
     .rating {
-
+      display: flex;
     }
   }
 }

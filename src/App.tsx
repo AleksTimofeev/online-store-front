@@ -8,7 +8,7 @@ import styles from './App.module.scss'
 import {HomePage} from "./pages/HomePage/HomePage";
 import {Catalog} from "./features/Catalog/Catalog";
 import {Footer} from "./components/Footer/Footer";
-import {Product} from "./features/Product/Product";
+import {Product} from "./features/Catalog/Product/Product";
 import {Basket} from "./features/Basket/Basket";
 import {PrivateRoute} from "./pages/PrivateRoute/PrivateRoute";
 import {RegistrationPage} from "./features/auth/registration/RegistrationPage";
