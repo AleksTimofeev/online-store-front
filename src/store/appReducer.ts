@@ -1,12 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RequestStatusType} from "../constants/types";
-import {auth} from "../features/auth/authReducer";
+import {RequestStatus} from "../constants/enum";
 
 
 const slice = createSlice({
   name: 'app',
   initialState: {
-    appStatus: 'idle'
+    appStatus: RequestStatus.IDLE
   } as AppReducerType,
   reducers: {
     changeAppStatus: (state, action: PayloadAction<RequestStatusType>) => {
