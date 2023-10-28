@@ -86,7 +86,7 @@ const slice = createSlice({
 
 export const catalogReducer = slice.reducer
 
-type CatalogReducerType = {
+export type CatalogReducerType = {
   products: GetProductsResponseType
   currentProduct: ProductType | null
   productStatus: {
