@@ -75,7 +75,9 @@ export const login = createAsyncThunk<UserType, LoginType, { rejectValue: { mess
       const token = await authApi.login(arg)
       localStorage.setItem('my token', token)
       thunkAPI.dispatch(changeAuthenticationStatus('idle'))
-      return jwtDecode<UserType>(token)
+      const dataUser = jwtDecode<UserType>(token)
+      thunkAPI.dispatch(getBasket({id: dataUser.basket.id}))
+      return dataUser
     } catch (e) {
       let errorMessage: string
       if (isAxiosError(e)) {
