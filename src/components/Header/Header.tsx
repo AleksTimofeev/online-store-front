@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Header.module.scss'
 import {NavLink, useNavigate} from "react-router-dom";
 import {basketIcon} from '../../assets/icons/basket'
@@ -12,16 +12,33 @@ export const Header = () => {
   const navigate = useNavigate()
   const appStatus = useAppSelector(state => state.app.appStatus)
   const basketProductsCount = useAppSelector(state => state.basket.basket?.products.length)
+  const [showMenu, setShowMenu] = useState(false)
+
+  const handleShowMenu = () => {
+    setShowMenu(!showMenu)
+  }
 
   const handleNavigateToBasket = () => {
     navigate('/basket')
   }
 
+  useEffect(() => {
+    setShowMenu(false)
+  }, [navigate])
+
   return (
     <>
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <nav className={styles.navigation}>
+          <div
+            className={styles.iconMenu}
+            onClick={handleShowMenu}
+          >
+            {showMenu ? 'X' : 'Menu'}
+          </div>
+          <nav className={`
+          ${styles.navigation} ${showMenu ? styles.showMenu : ''}
+          `}>
             <NavLink to={'/'}>Главная</NavLink>
             <NavLink to={'/catalog'}>Каталог</NavLink>
             <NavLink to={'/contacts'}>Контакты</NavLink>

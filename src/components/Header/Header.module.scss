@@ -4,6 +4,7 @@
   background: #343434;
 
   .container {
+    position: relative;
     width: 90%;
     height: 50px;
     display: flex;
@@ -25,6 +26,10 @@
       border-bottom: 1px solid white;
       transition: .4s;
     }
+  }
+
+  .iconMenu {
+    display: none;
   }
 
   .userInfo {
@@ -110,6 +115,40 @@
 
 }
 
+@media screen and (max-width: 420px){
+  .wrapper {
+
+    .container{
+
+      .navigation {
+        position: absolute;
+        top: 46px;
+        left: -200px;
+        flex-direction: column;
+        background: #343434;
+        padding: 0 20px 12px;
+        border-radius: 6px;
+
+        transition: .3s;
+      }
+      .showMenu {
+        left: -25px;
+
+        transition: .3s;
+      }
+      .iconMenu {
+        display: block;
+        color: #FFFFFF;
+        cursor: pointer;
+        user-select: none;
+
+      }
+      .userInfo {
+        margin-left: auto;
+      }
+    }
+  }
+}
 
 @keyframes showMenu {
   0% {
