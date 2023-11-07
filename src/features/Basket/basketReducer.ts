@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {basketApi, BasketType} from "../../api/basketApi";
 import {isAxiosError} from "axios";
 import {RequestStatus} from "../../constants/enum";
+import {logout} from "../auth/authReducer";
 
 export const getBasket = createAsyncThunk<BasketType, { id: string }, { rejectValue: { message: string } }>(
   'basket/getBasket', async (arg, thunkAPI) => {
@@ -82,6 +83,10 @@ const slice = createSlice({
       state.removeProductStatus.map(pr => pr.productId === action.meta.arg.productId ?
         {...pr, productStatus: RequestStatus.FAILED} : {...pr}
       )
+    })
+
+    builder.addCase(logout.fulfilled, (state) => {
+      state.basket = null
     })
   }
 })
