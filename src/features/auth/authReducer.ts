@@ -82,8 +82,10 @@ export const login = createAsyncThunk<UserType, LoginType, { rejectValue: { mess
       let errorMessage: string
       if (isAxiosError(e)) {
         errorMessage = e.response ? e.response.data.message : e.message
+        thunkAPI.dispatch(changeAppStatus(RequestStatus.FAILED))
         return thunkAPI.rejectWithValue({message: errorMessage})
       } else {
+        thunkAPI.dispatch(changeAppStatus(RequestStatus.FAILED))
         return thunkAPI.rejectWithValue({message: 'Что-то пошло не так.'})
       }
     }
