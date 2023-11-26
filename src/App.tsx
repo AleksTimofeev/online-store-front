@@ -14,6 +14,7 @@ import {PrivateRoute} from "./pages/PrivateRoute/PrivateRoute";
 import {RegistrationPage} from "./features/auth/registration/RegistrationPage";
 import {RequestStatus} from "./constants/enum";
 import {ContactsPage} from "./pages/ContactsPage/ContactsPage";
+import {Profile} from "./features/auth/Profile/Profile";
 
 function App() {
 
@@ -38,6 +39,11 @@ function App() {
           <Route path={'basket'} element={
             <PrivateRoute>
               <Basket/>
+            </PrivateRoute>
+          }/>
+          <Route path={'profile'} element={
+            <PrivateRoute>
+              <Profile />
             </PrivateRoute>
           }/>
         </Routes>

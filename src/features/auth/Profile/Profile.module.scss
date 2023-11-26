@@ -1,0 +1,26 @@
+.wrapper {
+  width: 100%;
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+.inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+.avatarContainer {
+
+  svg {
+    width: 150px;
+    height: 150px;
+    stroke: #727272;
+  }
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  .text {}
+}
