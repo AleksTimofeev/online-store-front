@@ -4,6 +4,7 @@ import {useFormik} from "formik";
 import {login, registration} from "../authReducer";
 import {Navigate, useNavigate} from "react-router-dom";
 import styles from './RegistrationPage.module.scss'
+import {Button} from "../../../components/Button/Button";
 
 type LoginFormType = {
   login: string
@@ -94,10 +95,10 @@ export const RegistrationPage = () => {
             <span className={styles.inputError}>{formik.errors.password}</span>
           }
         </label>
-        <button
+        <Button
           disabled={authenticationStatus === 'loading' || !!formik.errors.password || !!formik.errors.email}
           type={"submit"}
-        >Зарегистрироваться</button>
+        >Зарегистрироваться</Button>
       </form>
     </div>
   );

@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {login} from "../authReducer";
 import styles from './LoginPage.module.scss'
 import {Navigate} from "react-router-dom";
+import {Button} from "../../../components/Button/Button";
 
 type LoginFormType = {
   email: string
@@ -79,10 +80,10 @@ const LoginPage = () => {
             <span className={styles.inputError}>{formik.errors.password}</span>
           }
         </label>
-        <button
+        <Button
           disabled={authenticationStatus === 'loading' || !!formik.errors.password || !!formik.errors.email}
           type={"submit"}
-        >send</button>
+        >Войти</Button>
       </form>
     </div>
   );
