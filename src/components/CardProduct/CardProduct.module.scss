@@ -3,6 +3,12 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 4px 0 #cecece;
+  transition: .2s;
+
+  &:hover {
+    box-shadow: 0 0 6px 0 #a8a8a8;
+    transition: .2s;
+  }
 
   .imgContainer {
     width: 200px;
@@ -43,6 +49,10 @@
 
     button {
       min-width: 110px;
+
+      &:hover {
+        box-shadow:  0 0 2px 0 #757575;;
+      }
     }
   }
 }
