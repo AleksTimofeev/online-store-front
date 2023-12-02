@@ -13,7 +13,7 @@ export const Basket = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <h2>Корзина</h2>
+        {/*<h2>Корзина</h2>*/}
         {basket && <div className={styles.productsList}>
           {basket.products.map(pr => (
             <div className={styles.product} key={pr.id}>
