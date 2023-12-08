@@ -5,8 +5,10 @@ import {instance} from "./authApi";
 
 export const productsApi = {
   getProducts(param: GetProductsRequestType) {
-    const {pageNumber, pageSize} = param
-    return instance.get<GetProductsResponseType>(`products?page-number=${pageNumber}&page-size=${pageSize}`)
+    const {pageNumber, pageSize, sort, optionSort} = param
+    return instance.get<GetProductsResponseType>(
+      `products?page-number=${pageNumber}&page-size=${pageSize}&sort=${sort}&option=${optionSort}`
+    )
       .then(data => data.data)
   },
   getProductById(productId: string){
@@ -18,6 +20,8 @@ export const productsApi = {
 export type GetProductsRequestType = {
   pageNumber: number
   pageSize: number
+  sort?: string
+  optionSort?: string
 }
 export type GetProductsResponseType = {
   products: ProductType[]

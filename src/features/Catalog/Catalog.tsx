@@ -4,6 +4,7 @@ import {Pagination} from "../../components/Pagination/Pagination";
 import {useAppDispatch, useAppSelector} from "../../store/store";
 import {getProducts} from "./catalogReducer";
 import {CardProduct} from "../../components/CardProduct/CardProduct";
+import {Sort} from "./Sort/Sort";
 
 export const Catalog = () => {
 
@@ -13,6 +14,8 @@ export const Catalog = () => {
   const [pageNumber, setPageNumber] = useState<number>(1)
   const [pageSize, setPageSize] = useState(10)
   const [totalPagesCount, setTotalPagesCount] = useState(Math.ceil(products.totalCount / pageSize))
+  const [sort, setSort] = useState('asc')
+  const [optionSort, setOptionSort] = useState('rating')
 
   const handleChangePageNumber = (pageNumber: number) => {
     setPageNumber(pageNumber)
@@ -21,14 +24,24 @@ export const Catalog = () => {
     setPageSize(pageSize)
     setTotalPagesCount(Math.ceil(products.totalCount / pageSize))
   }
+  const handleSort = (sort: string) => {
+    setSort(sort)
+  }
+  const handleOptionSort = (option: string) => {
+    setOptionSort(option)
+  }
+  const handleUpdate = () => {
+    dispatch(getProducts({pageSize, pageNumber, sort, optionSort}))
+  }
 
   useEffect(() => {
-    dispatch(getProducts({pageSize, pageNumber}))
+    dispatch(getProducts({pageSize, pageNumber, sort, optionSort}))
   }, [pageNumber, pageSize])
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
+        <Sort sort={handleSort} option={handleOptionSort} update={handleUpdate} />
           <ul className={styles.productList}>
             {products && products.products.map(p => (
               <li key={p.id} className={styles.productWrapper}>
