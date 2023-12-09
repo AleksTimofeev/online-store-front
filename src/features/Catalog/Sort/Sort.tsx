@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './Sort.module.scss'
+import {Button} from "../../../components/Button/Button";
 
 type PropsType = {
   sort: (sort: string) => void
@@ -9,34 +11,31 @@ type PropsType = {
 export const Sort: React.FC<PropsType> = ({sort, option, update}) => {
 
   const handleChangeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    // console.log(e.currentTarget.value)
     sort(e.currentTarget.value)
   }
   const handleChangeOptionSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    // console.log(e.currentTarget.value)
     option(e.currentTarget.value)
   }
   const handleUpdate = () => {
-    // console.log('update')
     update()
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
+      <span>Сортировать: </span>
       <label>
         <select onChange={handleChangeSort}>
-          <option value='asc'>asc</option>
-          <option value='desc'>desc</option>
+          <option value='asc'>По возрастанию</option>
+          <option value='desc'>По убыванию</option>
         </select>
       </label>
       <label>
         <select onChange={handleChangeOptionSort}>
-          <option value="rating">rating</option>
-          <option value="price">price</option>
-          <option value="title">title</option>
+          <option value="rating">Рейтинг</option>
+          <option value="price">Цена</option>
         </select>
       </label>
-      <button onClick={handleUpdate}>update</button>
+      <Button onClick={handleUpdate}>update</Button>
     </div>
   );
 }
