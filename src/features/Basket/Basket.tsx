@@ -15,7 +15,6 @@ export const Basket = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        {/*<h2>Корзина</h2>*/}
         {basket && <div className={styles.inner}>
           <div className={styles.productsList}>
             {basket.products.map(pr => (
@@ -30,7 +29,7 @@ export const Basket = () => {
             ))}
           </div>
           <div className={styles.finalPrice}>
-            <FinalPrice />
+            {basket && basket.products.length && <FinalPrice products={basket.products} />}
           </div>
         </div>}
       </div>
